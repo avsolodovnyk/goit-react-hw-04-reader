@@ -1,0 +1,6 @@
+.publication {
+  box-shadow: 10px 10px 56px 19px rgba(0, 0, 0, 0.75);
+  border-radius: 10px 10px 10px 10px;
+  border: 0px solid #000000;
+  padding: 20px 20px 20px 20px;
+}

@@ -1,0 +1,5 @@
+.counter {
+  composes: font from global;
+  margin: 0;
+  margin-bottom: 30px;
+}
