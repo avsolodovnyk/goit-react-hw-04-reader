@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Controls from '../Controls';
 import Counter from '../Counter';
 import Publication from '../Publication';
+import routes from '../../routes';
 
 export default class Reader extends Component {
   static propTypes = {
@@ -38,10 +39,13 @@ export default class Reader extends Component {
   render() {
     const { items, location } = this.props;
     const curPos = Number(new URLSearchParams(location.search).get('item'));
-    const currentItem = items[curPos - 1];
-    if (curPos < 1 || curPos > items.length) {
-      return <div>Error 404</div>;
+    const { history } = this.props;
+    if (!curPos || curPos < 1 || curPos > items.length) {
+      history.push(`${routes.READER}?item=1`);
+      return 1;
     }
+    const currentItem = items[curPos - 1];
+
     return (
       <>
         <Controls
