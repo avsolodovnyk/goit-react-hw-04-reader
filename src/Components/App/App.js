@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { PureComponent } from 'react';
 import {
   BrowserRouter as Router,
@@ -20,6 +19,7 @@ class App extends PureComponent {
             <Route
               exact
               path={routes.READER}
+              // eslint-disable-next-line react/jsx-props-no-spreading
               render={props => <Reader {...props} items={publications} />}
             />
             <Redirect to={`${routes.READER}?item=1`} />
