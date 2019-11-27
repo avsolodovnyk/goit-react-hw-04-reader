@@ -22,7 +22,6 @@ export default class Reader extends Component {
     const { items, location } = this.props;
     const curPos = Number(new URLSearchParams(location.search).get('item'));
     const { history } = this.props;
-    history.push(`${routes.READER}?item=10`);
     if (!curPos || curPos < 1 || curPos > items.length) {
       history.push(`${routes.READER}?item=1`);
     }
