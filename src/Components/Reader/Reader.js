@@ -18,6 +18,16 @@ export default class Reader extends Component {
     ).isRequired,
   };
 
+  componentDidMount() {
+    const { items, location } = this.props;
+    const curPos = Number(new URLSearchParams(location.search).get('item'));
+    const { history } = this.props;
+    history.push(`${routes.READER}?item=10`);
+    if (!curPos || curPos < 1 || curPos > items.length) {
+      history.push(`${routes.READER}?item=1`);
+    }
+  }
+
   handleNext = () => {
     this.props.history.push({
       ...this.props.location,
@@ -39,23 +49,20 @@ export default class Reader extends Component {
   render() {
     const { items, location } = this.props;
     const curPos = Number(new URLSearchParams(location.search).get('item'));
-    const { history } = this.props;
-    if (!curPos || curPos < 1 || curPos > items.length) {
-      history.push(`${routes.READER}?item=1`);
-      return 1;
-    }
     const currentItem = items[curPos - 1];
 
     return (
       <>
-        <Controls
-          curPos={curPos}
-          totalPub={items.length}
-          onNextClick={this.handleNext}
-          onPrevClick={this.handleBack}
-        />
-        <Counter curPos={curPos} totalPub={items.length} />
-        <Publication currentItem={currentItem} />
+        {currentItem && (
+          <Controls
+            curPos={curPos}
+            totalPub={items.length}
+            onNextClick={this.handleNext}
+            onPrevClick={this.handleBack}
+          />
+        )}
+        {currentItem && <Counter curPos={curPos} totalPub={items.length} />}
+        {currentItem && <Publication currentItem={currentItem} />}
       </>
     );
   }
