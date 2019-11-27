@@ -17,7 +17,6 @@ class App extends PureComponent {
         <div className={styles.reader}>
           <Switch>
             <Route
-              exact
               path={routes.READER}
               // eslint-disable-next-line react/jsx-props-no-spreading
               render={props => <Reader {...props} items={publications} />}

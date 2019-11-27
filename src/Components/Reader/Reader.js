@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Controls from '../Controls';
 import Counter from '../Counter';
 import Publication from '../Publication';
-import routes from '../../routes';
 
 export default class Reader extends Component {
   static propTypes = {
@@ -23,7 +22,7 @@ export default class Reader extends Component {
     const curPos = Number(new URLSearchParams(location.search).get('item'));
     const { history } = this.props;
     if (!curPos || curPos < 1 || curPos > items.length) {
-      history.push(`${routes.READER}?item=1`);
+      history.push(`/`);
     }
   }
 
